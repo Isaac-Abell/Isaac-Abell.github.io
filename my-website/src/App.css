@@ -1,0 +1,13 @@
+.sub-title {
+    font-size: 24px;
+    font-weight: bold;
+    background: none;
+    color: aliceblue;
+ }
+
+ .items {
+    display: flex;
+    flex-direction: column; /* Stacks components vertically */
+    align-items: center; /* Centers the items horizontally */
+  }
+  

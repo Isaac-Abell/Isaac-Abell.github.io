@@ -1,5 +1,7 @@
 import { TitleBanner } from './components/title-banner'
 import { Resume } from './components/resume'
+import { Projects } from './components/projects'
+import { Experience } from './components/experience'
 import './App.css'
 
 function App() {
@@ -8,7 +10,8 @@ function App() {
     <>
       <TitleBanner/>
       <div className='items'>
-        <Resume/>
+        <Projects/>
+        <Experience/>
       </div>
     </>
   )

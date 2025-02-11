@@ -7,7 +7,7 @@ export function Resume() {
         <div className="resume-banner">
             <div className="resume-info">
                 <div className="resume-link" onClick={() => window.open(resume, "_blank")}>
-                    <p>Resume</p>
+                    <h2 className='sub-title'>Resume</h2>
                     <img className="resume-image" src={resumePng} alt="Resume"/>
                 </div>
             </div>

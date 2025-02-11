@@ -3,6 +3,10 @@
     padding: 20px;
 }
 
+.title-banner h1{
+    color: aliceblue;
+}
+
 .title-info {
     display: flex;
     justify-content: center;
@@ -21,16 +25,19 @@
 
 .title-info div:hover {
     transform: scale(1.1);
-    background-color: #e0e0e0;
+    background-color: rgb(58, 57, 66);
 }
 
 .icon {
     width: 20px;
     height: 20px;
+    transition: transform 0.3s ease;
+    background: none;
 }
 
 p {
     margin: 0;
+    color: aliceblue;
     font-size: 16px;
 }
 
@@ -50,5 +57,5 @@ p {
 
 .title-info a div:hover {
     transform: scale(1.1);
-    background-color: #e0e0e0;
+    background-color: rgb(58, 57, 66);
 }

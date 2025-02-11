@@ -3,13 +3,18 @@ import './TitleBanner.css';
 import githubLogo from '../../assets/github-svg.svg';
 import linkedInLogo from '../../assets/linkedin-svg.svg';
 import mailLogo from '../../assets/mail-svg.svg';
-
+import resumeLogo from '../../assets/resume-svg.svg'; // Add an icon for the resume
 
 export function TitleBanner() {
     return (
         <div className='title-banner'>
             <h1>Isaac Abell</h1>
             <div className='title-info'>
+                <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer">
+                    <div>
+                        <p>Resume</p>
+                    </div>
+                </a>
                 <a href="https://github.com/Isaac-Abell" target="_blank" rel="noopener noreferrer">
                     <div>
                         <img className='icon' src={githubLogo} alt="GitHub Logo" />
@@ -22,7 +27,7 @@ export function TitleBanner() {
                 </a>
                 <a href="mailto:isaacabell.1.0.0@gmail.com" target="_blank" rel="noopener noreferrer">
                     <div>
-                        <img className="icon" src={mailLogo} alt="LinkedIn Logo" />
+                        <img className="icon" src={mailLogo} alt="Mail Logo" />
                     </div>
                 </a>
             </div>
