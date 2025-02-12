@@ -39,9 +39,6 @@ export function Projects() {
                 <li key={idx}>{point}</li>
               ))}
             </ul>
-            {project.link && <a className="project-link" href={project.link} target="_blank" rel="noopener noreferrer">
-              View Project
-            </a>}
           </div>
         ))}
       </div>
