@@ -39,6 +39,7 @@ p {
     margin: 0;
     color: aliceblue;
     font-size: 16px;
+    background: none;
 }
 
 .title-info a {
