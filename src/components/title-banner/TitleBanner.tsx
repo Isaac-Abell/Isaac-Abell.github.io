@@ -3,7 +3,6 @@ import './TitleBanner.css';
 import githubLogo from '../../assets/github-svg.svg';
 import linkedInLogo from '../../assets/linkedin-svg.svg';
 import mailLogo from '../../assets/mail-svg.svg';
-import resumeLogo from '../../assets/resume-svg.svg'; // Add an icon for the resume
 
 export function TitleBanner() {
     return (
