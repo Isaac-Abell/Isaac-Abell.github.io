@@ -9,8 +9,8 @@ function App() {
     <>
       <TitleBanner/>
       <div className='items'>
-        <Projects/>
         <Experience/>
+        <Projects/>
       </div>
     </>
   )
