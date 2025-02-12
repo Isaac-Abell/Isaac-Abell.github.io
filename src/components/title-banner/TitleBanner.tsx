@@ -15,21 +15,21 @@ export function TitleBanner() {
         "Isaac Abell".split("").map(() => "aliceblue")
       );
     
-      const handleHover = (index: number) => {
+    const handleHover = (index: number) => {
         setLetterColors((prevColors) => {
-          const newColors = [...prevColors];
-          newColors[index] = colors[Math.floor(Math.random() * colors.length)];
-          return newColors;
+            const newColors = [...prevColors];
+            newColors[index] = colors[Math.floor(Math.random() * colors.length)];
+            return newColors;
         });
-    
+
         setTimeout(() => {
-          setLetterColors((prevColors) => {
-            const fadedColors = [...prevColors];
-            fadedColors[index] = "aliceblue";
-            return fadedColors;
-          });
+            setLetterColors((prevColors) => {
+                const fadedColors = [...prevColors];
+                fadedColors[index] = "aliceblue";
+                return fadedColors;
+            });
         }, 3000);
-      };
+    };
     return (
         <div className='title-banner'>
             <h1>
