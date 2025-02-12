@@ -1,5 +1,6 @@
 {
   "name": "my-website",
+  "homepage": "https://Isaac-Abell.github.io/personal-website",
   "private": true,
   "version": "0.0.0",
   "type": "module",
