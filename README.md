@@ -25,5 +25,3 @@ npm run deploy
 ```
 
 ---
-
-Let me know if you'd like to add project context, tech stack, or usage examples.

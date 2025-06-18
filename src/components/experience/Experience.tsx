@@ -17,7 +17,7 @@ export function Experience() {
             company: "Intelligent Adaptive Interventions Lab",
             location: "Toronto, ON",
             role: "Research Assistant",
-            date: "September 2024 – Present",
+            date: "September 2024 – May 2025",
             details: [
                 "Developed a webapp for the lab to facilitate testing of a teaching assistant AI.",
                 "Developed a backend using FastAPI to integrate the AI model with the system.",
