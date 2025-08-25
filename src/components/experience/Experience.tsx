@@ -8,9 +8,10 @@ export function Experience() {
             role: "iXp Intern - Full Stack Developer",
             date: "May 2024 – Present",
             details: [
-                "Developed SAP Demo Environment 2.0, a web app that provides easy access to the entire SAP solution demo portfolio.",
-                "Built the frontend using React and the backend with Spring Boot.",
-                "The application is currently used by 20,000+ internal users and partners of SAP."
+                `Built a real-time user engagement tracking system by fine-tuning a pre-trained ResNet model using transfer learning in PyTorch. Deployment is planned for SAP Experience Centers.`,
+                `Led a team of interns to build SAP Demo Environment 2.0, a web app used by 20,000+ internal users and partners to access and present SAP solution demos in a unified, interactive platform.`,
+                `Developed the front-end of SAP Demo Environment 2.0 using TypeScript/React.`,
+                `Developed a Node.js REST API layer to refactor poorly structured backend data, enabling smoother integration with the front-end.`
             ]
         },
         {
@@ -19,9 +20,7 @@ export function Experience() {
             role: "Research Assistant",
             date: "September 2024 – May 2025",
             details: [
-                "Developed a webapp for the lab to facilitate testing of a teaching assistant AI.",
-                "Developed a backend using FastAPI to integrate the AI model with the system.",
-                "Built a React-based frontend and deployed the full-stack application on AWS."
+                `Built and deployed a full-stack web app to test the lab’s AI teaching assistant, developing the FastAPI back-end, React front-end deployed via AWS Amplify, and hosting backend services on AWS EC2/S3 to enable experiments.`
             ]
         },
         {
@@ -30,20 +29,18 @@ export function Experience() {
             role: "Software Engineering Intern",
             date: "May 2023 - August 2023",
             details: [
-                "Helped optimize AWS usage, cutting company costs by $2500/month.",
-                "Created an app review summarization tool to identify common complaints and requested changes from user reviews on the app store.",
-                "Developed the website for BonsAI: AI ChatBot Assistant askbons.ai."
+                `Built and deployed an app review summarization tool using the OpenAI API, leveraging prompt engineering for high-quality summaries, with automated monthly execution via AWS CloudWatch and Lambda, and notifications through Slack and AWS SES.`,
+                `Reduced AWS costs by $2,500/month by replacing a macOS EC2 instance used for APNs token signing with a Linux-based implementation using portable credentials.`
             ]
         },
         {
             company: "Guavy",
             location: "Victoria, BC",
             role: "Software Engineering Intern",
-            date: "June 2021 - August 2021",
+            date: "May 2021 - August 2021",
             details: [
-                "Developed server load tests to determine the limit of server operating parameters.",
-                "Used Cypress to simulate a user’s activity on Guavy’s website in order to identify possible bugs.",
-                "Developed web scraping tools using Puppeteer to maintain current information for Guavy’s database."
+                `Created Puppeteer scripts to scrape websites and update Guavy’s database automatically.`,
+                `Built automated tests using Cypress to verify website functionality.`
             ]
         }
     ];
@@ -56,15 +53,18 @@ export function Experience() {
                     <div key={index} className="experience-card">
                         <div className="experience-header">
                             <h3 className="experience-title">{exp.role}</h3>
+                            <p> | </p>
                             <p className="experience-title">{exp.company}</p>
                         </div>
                         <p className="experience-description">{exp.location}</p>
                         <p className="experience-description">{exp.date}</p>
-                        <ul className="experience-description">
-                            {exp.details.map((detail, i) => (
-                                <li key={i}>{detail}</li>
-                            ))}
-                        </ul>
+                        <div className="description-container">
+                            <ul className="experience-description">
+                                {exp.details.map((detail, i) => (
+                                    <li key={i}>{detail}</li>
+                                ))}
+                            </ul>
+                        </div>
                     </div>
                 ))}
             </div>

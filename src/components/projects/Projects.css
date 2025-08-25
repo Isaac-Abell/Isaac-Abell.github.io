@@ -35,6 +35,11 @@
     color: aliceblue;
     background: none;
   }
+
+  .description-container {
+    margin: 0 10px;
+    background: none;
+  }
   
   .project-description {
     font-size: 14px;

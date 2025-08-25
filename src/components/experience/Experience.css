@@ -34,7 +34,6 @@
     font-weight: bold;
     color: aliceblue;
     background: none;
-    margin-right: 10px; /* Add some space between the title and company */
 }
 
 .experience-header {
@@ -51,6 +50,12 @@
     color: aliceblue;
     padding-left: 0;
     background: none;
+}
+
+.description-container {
+    margin: 0 10px;
+    background: none;
+
 }
 
 .experience-link {
