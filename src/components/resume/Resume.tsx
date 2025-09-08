@@ -1,5 +1,5 @@
 import './Resume.css';
-import resume from '/Resume.pdf';
+import resume from '/Isaac_Abell_Resume.pdf';
 import resumePng from '../../assets/resume-png.png'
 
 export function Resume() {

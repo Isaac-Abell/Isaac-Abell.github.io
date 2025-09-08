@@ -44,7 +44,7 @@ export function TitleBanner() {
                 ))}
             </h1>
             <div className='title-info'>
-                <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer">
+                <a href="/Isaac_Abell_Resume.pdf" target="_blank" rel="noopener noreferrer">
                     <div>
                         <p className='resume-name'>Resume</p>
                     </div>
@@ -59,7 +59,7 @@ export function TitleBanner() {
                         <img className="icon" src={linkedInLogo} alt="LinkedIn Logo" />
                     </div>
                 </a>
-                <a href="mailto:isaacabell.1.0.0@gmail.com" target="_blank" rel="noopener noreferrer">
+                <a href="mailto:me@isaacabell.com" target="_blank" rel="noopener noreferrer">
                     <div>
                         <img className="icon" src={mailLogo} alt="Mail Logo" />
                     </div>
