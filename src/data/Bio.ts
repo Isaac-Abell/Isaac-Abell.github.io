@@ -17,7 +17,7 @@ export const bioData: Bio = {
         },
         {
             label: "Interests",
-            value: "AI/ML, Web Development, Open Source, Problem Solving"
+            value: "AI/ML, Web Development, Solving Real-World Problems, Mountain Biking, Skiing, Travel"
         }
     ]
 };
