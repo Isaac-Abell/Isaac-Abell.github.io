@@ -7,8 +7,6 @@ import githubLogo from '../../assets/github-svg.svg';
 import linkedInLogo from '../../assets/linkedin-svg.svg';
 import mailLogo from '../../assets/mail-svg.svg';
 
-const colors = ["#CD1818", "#116D6E", "#C84B31", "#FFF4B7", "#810CA8", "#19376D"];
-
 export function TitleBanner() {
 
     const [letterColors, setLetterColors] = useState(
@@ -18,7 +16,7 @@ export function TitleBanner() {
     const handleHover = (index: number) => {
         setLetterColors((prevColors) => {
             const newColors = [...prevColors];
-            newColors[index] = colors[Math.floor(Math.random() * colors.length)];
+            newColors[index] = "#00bcd4";
             return newColors;
         });
 
