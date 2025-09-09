@@ -11,3 +11,21 @@
     align-items: center; /* Centers the items horizontally */
   }
   
+.other-corner-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(145deg, #00bcd4, #00e5ff);
+    color: #0d0d0d;
+    padding: 10px 15px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 6px 12px rgba(0,188,212,0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.other-corner-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0,188,212,0.4);
+}

@@ -54,7 +54,8 @@
 
 .project-link-btn:hover .link-icon {
     transform: translateX(1px) translateY(-1px);
-}/* Enhanced Projects Component Styles */
+}
+
 .projects-container {
     padding: 40px 20px;
     text-align: center;
