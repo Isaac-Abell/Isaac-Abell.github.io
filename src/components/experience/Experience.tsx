@@ -11,10 +11,10 @@ export function Experience({ experiences }: { experiences: Experience[] }) {
                         <div className="experience-header">
                             <div className="title-section">
                                 <h3 className="experience-role">{exp.role}</h3>
-                                <a 
-                                    href={exp.companyUrl} 
-                                    target="_blank" 
-                                    rel="noopener noreferrer" 
+                                <a
+                                    href={exp.companyUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="experience-company-link"
                                 >
                                     <h4 className="experience-company">{exp.company}</h4>
@@ -31,6 +31,13 @@ export function Experience({ experiences }: { experiences: Experience[] }) {
                                     <li key={i}>{detail}</li>
                                 ))}
                             </ul>
+                            {exp.skills && exp.skills.length > 0 && (
+                                <div className="experience-skills">
+                                    {exp.skills.map((skill, i) => (
+                                        <span key={i} className="skill-bubble">{skill}</span>
+                                    ))}
+                                </div>
+                            )}
                         </div>
                     </div>
                 ))}

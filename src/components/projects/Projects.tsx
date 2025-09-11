@@ -12,8 +12,8 @@ export function Projects({ projects }: { projects: Project[] }) {
       <h2 className="sub-title">Projects</h2>
       <div className="projects-list">
         {projects.map((project, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className="project-card"
           >
             <div className="project-header">
@@ -45,21 +45,22 @@ export function Projects({ projects }: { projects: Project[] }) {
                 </div>
               )}
             </div>
-            
+           
             <div className="project-details">
               <ul className="project-description">
                 {project.description.map((point, idx) => (
                   <li key={idx}>{point}</li>
                 ))}
               </ul>
+              
+              {project.technologies && project.technologies.length > 0 && (
+                <div className="project-technologies">
+                  {project.technologies.map((tech, i) => (
+                    <span key={i} className="tech-bubble">{tech}</span>
+                  ))}
+                </div>
+              )}
             </div>
-            
-            {project.technologies && (
-              <div className="technologies-section">
-                <span className="technologies-label">Technologies:</span>
-                <span className="technologies-list">{project.technologies}</span>
-              </div>
-            )}
           </div>
         ))}
       </div>

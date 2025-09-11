@@ -5,5 +5,5 @@ export interface Project {
     live?: string;
     github?: string;
   };
-  technologies?: string;
+  technologies?: string[];
 }
