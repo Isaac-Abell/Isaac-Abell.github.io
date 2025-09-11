@@ -46,6 +46,6 @@ export const experiences: Experience[] = [
                 `Developed Puppeteer scripts to scrape websites, enhancing the volume and quality of data in Guavy’s databases.`,
                 `Created Cypress tests to validate website functionality prior to deployment, ensuring a reliable user experience.`
             ],
-            skills: ["JavaScipt", "TypeScript", "Puppeteer", "Cypress"]
+            skills: ["JavaScipt", "TypeScript", "Node.js"]
         }
     ];
