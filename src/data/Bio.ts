@@ -8,7 +8,7 @@ export const bioData: Bio = {
     highlights: [
         {
             label: "Current Focus",
-            value: "Full-Stack Development, Computer Vision, Cloud Architecture"
+            value: "Full-Stack Development, Computer Vision, AI/ML"
         },
         {
             label: "Education",
@@ -16,7 +16,7 @@ export const bioData: Bio = {
         },
         {
             label: "Interests",
-            value: "AI/ML, Web Development, Solving Real-World Problems, Mountain Biking, Skiing, Travel"
+            value: "AI/ML, Solving Real-World Problems, Mountain Biking, Skiing, Travel"
         }
     ]
 };
