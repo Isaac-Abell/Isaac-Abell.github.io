@@ -57,7 +57,7 @@
 }
 
 .projects-container {
-    padding: 40px 20px;
+    padding: 20px 20px;
     text-align: center;
     max-width: 1000px;
     margin: 0 auto;
@@ -252,7 +252,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .projects-container {
-        padding: 30px 15px;
+        padding: 10px 15px;
     }
     
     .sub-title {

@@ -1,7 +1,7 @@
 /* Enhanced TitleBanner Component Styles */
 .title-banner {
     text-align: center;
-    padding: 60px 20px 40px;
+    padding: 0px 20px 0px;
     position: relative;
     background: none;
 }
@@ -170,7 +170,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .title-banner {
-        padding: 40px 15px 30px;
+        padding: 0px 15px 0px;
     }
     
     .main-title {
