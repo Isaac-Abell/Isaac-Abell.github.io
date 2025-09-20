@@ -36,7 +36,13 @@ jobs:
       # 6. Run Playwright tests
       - name: Run Playwright tests
         run: npm run test:e2e
+      
+      # 7. Set Credentials for Git
+      - name: Set Git user
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      # 7. Deploy only if build & tests pass
+      # 8. Deploy only if build & tests pass
       - name: Deploy
         run: npm run deploy
