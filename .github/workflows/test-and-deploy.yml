@@ -1,6 +1,5 @@
 name: Build, Test, and Deploy
 
-# Trigger on every push to main
 on:
   push:
     branches:
@@ -36,15 +35,34 @@ jobs:
       # 6. Run Playwright tests
       - name: Run Playwright tests
         run: npm run test:e2e
-      
-      # 7. Set Credentials for Git
+
+      # 7. Check if any relevant website files changed
+      - name: Check for website changes
+        id: changes
+        run: |
+          echo "Checking for changes in website-relevant files..."
+          git fetch origin main
+          CHANGED_FILES=$(git diff --name-only origin/main HEAD)
+          echo "Changed files: $CHANGED_FILES"
+
+          # Only deploy if these paths changed
+          PATTERNS="^(src/|public/|vite.config.js|tsconfig.json|package\.json|package-lock\.json|.*\.json)$"
+
+          if echo "$CHANGED_FILES" | grep -E "$PATTERNS"; then
+            echo "website_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "website_changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      # 8. Set Git credentials
       - name: Set Git user
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      # 8. Deploy only if build & tests pass
+      # 9. Deploy only if relevant files changed
       - name: Deploy
+        if: steps.changes.outputs.website_changed == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        run: npx gh-pages -d dist -r https://x-access-token:${GITHUB_TOKEN}@github.com/Isaac-Abell/Isaac-Abell.github.io.git
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx gh-pages -d dist -b gh-pages -r https://x-access-token:${GITHUB_TOKEN}@github.com/Isaac-Abell/Isaac-Abell.github.io.git
