@@ -45,4 +45,6 @@ jobs:
 
       # 8. Deploy only if build & tests pass
       - name: Deploy
-        run: npm run deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        run: npx gh-pages -d dist -r https://x-access-token:${GITHUB_TOKEN}@github.com/Isaac-Abell/Isaac-Abell.github.io.git
