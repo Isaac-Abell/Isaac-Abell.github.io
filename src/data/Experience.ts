@@ -8,8 +8,8 @@ export const experiences: Experience[] = [
             date: "May 2024 – Present",
             companyUrl: "https://www.sap.com/",
             details: [
-                `Developed a computer vision ML model to track real-time user engagement in order to help designers improve customer engagement across 18 SAP Experience Centers worldwide, by using transfer learning on ResNet-101.`,
-                `Worked with a team of 5 interns to build SAP Demo Environment 2.0, a platform currently used by 20,000+ internal users and partners to access and present SAP solution demos; developing the front end with TypeScript/React and adding a Node.js REST API layer to organize backend data for seamless integration with the front end.`
+                `Developed a computer vision model leveraging transfer learning on a Vision Transformer (ViT) to classify real-time user engagement, with planned global deployment across 18 SAP Experience Centers in 2026.`,
+                `Collaborated with a team of 5 interns to build SAP Demo Environment 2.0, a platform currently used by 20,000+ users to showcase SAP solution demos; developing the front end with TypeScript/React and adding a Node.js REST API layer to organize backend data for integration with the front end.`
             ],
             skills: ["Python", "JavaScript", "TypeScript", "React", "Node.js", "PyTorch", "GCP"]
         },
