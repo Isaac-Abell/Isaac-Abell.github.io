@@ -22,7 +22,7 @@ export const experiences: Experience[] = [
             details: [
                 `Built and deployed a full-stack web app to test the lab’s AI teaching assistant in real-world applications, developing a FastAPI backend, React frontend, and hosting backend services on AWS EC2/S3 with frontend deployment via AWS Amplify.`
             ],
-            skills: ["Python", "FastAPI", "AWS"]
+            skills: ["Python", "JavaScript", "React", "FastAPI", "AWS"]
         },
         {
             company: "Appex",
