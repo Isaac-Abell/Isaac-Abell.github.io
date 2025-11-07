@@ -2,6 +2,19 @@ import type { Project } from '../types/Project';
 
 export const projects: Project[] = [
   {
+    title: "Artificial Isaac: Personalized AI Chatbot",
+    description: [
+      "Fine-tuned Qwen 2.5 (7B) on personal WhatsApp and Instagram chats to create a chatbot that mimics my communication style.",
+      "Integrated Retrieval-Augmented Generation (RAG) using ChromaDB for accurate personal knowledge retrieval.",
+      "Optimized training with LoRA and 4-bit quantization to enable fine-tuning on consumer GPUs (16GB+ VRAM).",
+      "Developed local preprocessing scripts for chat data, including parsing, cleaning, and formatting for model fine-tuning."
+    ],
+    technologies: ["Python", "PyTorch", "Hugging Face Transformers", "PEFT", "BitsAndBytes", "ChromaDB", "LoRA"],
+    links: {
+      github: "https://github.com/Isaac-Abell/AI-Artifical-Isaac"
+    }
+  },
+  {
     title: "Rental Listings with Commute Filter",
     description: [
       `Developed a full-stack rental search platform where users must specify a destination (e.g., work or school) and can filter listings based on commute time, with a React front end and serverless backend`,
