@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { Socials } from "../../types/Socials";
 import './TitleBanner.css';
@@ -23,25 +22,6 @@ const MailIcon = () => (
 );
 
 export function TitleBanner({socials}: {socials: Socials}) {
-    const [letterColors, setLetterColors] = useState(
-        "Isaac Abell".split("").map(() => "#f0f8ff")
-    );
-   
-    const handleHover = (index: number) => {
-        setLetterColors((prevColors) => {
-            const newColors = [...prevColors];
-            newColors[index] = "#00bcd4";
-            return newColors;
-        });
-        setTimeout(() => {
-            setLetterColors((prevColors) => {
-                const fadedColors = [...prevColors];
-                fadedColors[index] = "#f0f8ff";
-                return fadedColors;
-            });
-        }, 3000);
-    };
-
     const socialLinks = [
         {
             href: "/Isaac_Abell_Resume.pdf",
@@ -75,17 +55,28 @@ export function TitleBanner({socials}: {socials: Socials}) {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
+                style={{
+                    background: 'linear-gradient(135deg, #00c8ff 0%, #ff0096 50%, #00ffc8 100%)',
+                    backgroundSize: '200% 200%',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    backgroundClip: 'text'
+                }}
             >
                 {"Isaac Abell".split("").map((char, index) => (
                     <motion.span
                         key={index}
-                        style={{ 
-                            color: letterColors[index], 
-                            transition: "color 1s ease",
-                            display: 'inline-block'
+                        style={{
+                            background: 'inherit',
+                            WebkitBackgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
+                            backgroundClip: 'text'
                         }}
-                        onMouseEnter={char !== " " ? () => handleHover(index) : undefined}
-                        whileHover={char !== " " ? { scale: 1.1 } : {}}
+                        whileHover={char !== " " ? { 
+                            scale: 1.2,
+                            rotate: 5,
+                            y: -15
+                        } : {}}
                         transition={{ type: "spring", stiffness: 400 }}
                     >
                         {char === " " ? "\u00A0" : char}
