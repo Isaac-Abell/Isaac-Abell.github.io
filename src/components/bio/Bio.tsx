@@ -47,7 +47,7 @@ export function Bio({ bioData }: { bioData: Bio }) {
                     whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
                 >
-                    {bioData.paragraphs.length > 0 && (
+                    {bioData.paragraphs && bioData.paragraphs.length > 0 && (
                         <div className="bio-text">
                             {bioData.paragraphs.map((paragraph, index) => (
                                 <motion.p 
@@ -59,7 +59,7 @@ export function Bio({ bioData }: { bioData: Bio }) {
                             ))}
                         </div>
                     )}
-                    {bioData.highlights.length > 0 && (
+                    {bioData.highlights && bioData.highlights.length > 0 && (
                         <div className="bio-highlights">
                             {bioData.highlights.map((highlight, index) => (
                                 <motion.div 

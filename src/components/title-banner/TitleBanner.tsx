@@ -55,23 +55,10 @@ export function TitleBanner({socials}: {socials: Socials}) {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
-                style={{
-                    background: 'linear-gradient(135deg, #00c8ff 0%, #ff0096 50%, #00ffc8 100%)',
-                    backgroundSize: '200% 200%',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text'
-                }}
             >
                 {"Isaac Abell".split("").map((char, index) => (
                     <motion.span
                         key={index}
-                        style={{
-                            background: 'inherit',
-                            WebkitBackgroundClip: 'text',
-                            WebkitTextFillColor: 'transparent',
-                            backgroundClip: 'text'
-                        }}
                         whileHover={char !== " " ? { 
                             scale: 1.2,
                             rotate: 5,
