@@ -11,7 +11,7 @@ export const projects: Project[] = [
     ],
     technologies: ["Python", "PyTorch", "Hugging Face Transformers", "PEFT", "BitsAndBytes", "ChromaDB", "LoRA"],
     links: {
-      github: "https://github.com/Isaac-Abell/AI-Artifical-Isaac"
+      github: "https://github.com/Isaac-Abell/Artificial-Isaac"
     }
   },
   {
