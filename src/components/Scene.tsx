@@ -25,8 +25,8 @@ const POSITIONS: Record<Section, THREE.Vector3> = {
 const CAMERA_STAND: Record<Section, THREE.Vector3> = {
     home: new THREE.Vector3(0, 0, 40),      // Looking straight at home
     bio: new THREE.Vector3(120, 0, -20),     // Looking at bio from a slight angle
-    experience: new THREE.Vector3(50, 100, -20),  // Pulled way back from POSITIONS.experience (-150 to -20 is a delta of 130)
-    projects: new THREE.Vector3(-100, -100, 80),   // Pulled extremely back from POSITIONS.projects (-100 to 80 is a delta of 180)
+    experience: new THREE.Vector3(50, 90, 0),  // Pulled way back (delta 150), centered slightly lower
+    projects: new THREE.Vector3(-100, -110, 100),   // Pulled extremely back (delta 200), centered slightly lower
 };
 
 export function Scene({ activeSection }: SceneProps) {
@@ -48,8 +48,8 @@ export function Scene({ activeSection }: SceneProps) {
                 const direction = new THREE.Vector3().subVectors(lookAtPos, targetPos).normalize();
                 const distance = targetPos.distanceTo(lookAtPos);
 
-                // Move camera 65% closer to the element
-                targetPos.add(direction.multiplyScalar(distance * 0.65));
+                // Move camera 55% closer to the element to balance readability and navigation
+                targetPos.add(direction.multiplyScalar(distance * 0.55));
 
                 let panAmountY = 0;
                 let panAmountX = 0;
@@ -133,7 +133,7 @@ export function Scene({ activeSection }: SceneProps) {
                 <Float speed={1} rotationIntensity={0.05} floatIntensity={0.1}>
                     <Html transform wrapperClass="html-block" distanceFactor={25} center>
                         <div className="html-block-exp">
-                            <Experience experiences={experiences} onFocusItem={(index) => setFocusedItem({ type: 'experience', index })} />
+                            <Experience experiences={experiences} onFocusItem={activeSection === 'experience' ? (index) => setFocusedItem({ type: 'experience', index }) : undefined} />
                         </div>
                     </Html>
                 </Float>
@@ -143,7 +143,7 @@ export function Scene({ activeSection }: SceneProps) {
                 <Float speed={1} rotationIntensity={0.05} floatIntensity={0.1}>
                     <Html transform wrapperClass="html-block" distanceFactor={28} center>
                         <div className="html-block-proj">
-                            <Projects projects={projects} onFocusItem={(index) => setFocusedItem({ type: 'projects', index })} />
+                            <Projects projects={projects} onFocusItem={activeSection === 'projects' ? (index) => setFocusedItem({ type: 'projects', index }) : undefined} />
                         </div>
                     </Html>
                 </Float>
