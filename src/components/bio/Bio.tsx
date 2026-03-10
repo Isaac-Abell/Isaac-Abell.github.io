@@ -1,81 +1,49 @@
-import { motion } from 'framer-motion';
-import './Bio.css';
-import type { Bio } from '../../types/Bio';
+import type { Bio as BioType } from '../../types/Bio';
 
-export function Bio({ bioData }: { bioData: Bio }) {
-    const containerVariants = {
-        hidden: { opacity: 0, y: 50 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.6,
-                staggerChildren: 0.2
-            }
-        }
-    };
-
-    const itemVariants = {
-        hidden: { opacity: 0, x: -30 },
-        visible: {
-            opacity: 1,
-            x: 0,
-            transition: { duration: 0.5 }
-        }
-    };
-
+export function Bio({ bioData }: { bioData: BioType }) {
     return (
-        <motion.section 
-            className="bio-container"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={containerVariants}
-        >
-            <motion.h2 
-                className="sub-title"
-                initial={{ opacity: 0, y: -30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-            >
+        <section className="section-container" style={{ maxWidth: '800px' }}>
+            <h2 className="section-title" style={{
+                fontSize: '4rem',
+                fontWeight: 600,
+                margin: 0,
+                letterSpacing: '-0.03em',
+                color: '#ffffff'
+            }}>
                 About Me
-            </motion.h2>
-            <div className="bio-content">
-                <motion.div 
-                    className="bio-card"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                >
-                    {bioData.paragraphs && bioData.paragraphs.length > 0 && (
-                        <div className="bio-text">
-                            {bioData.paragraphs.map((paragraph, index) => (
-                                <motion.p 
-                                    key={index}
-                                    variants={itemVariants}
-                                >
-                                    {paragraph}
-                                </motion.p>
-                            ))}
-                        </div>
-                    )}
-                    {bioData.highlights && bioData.highlights.length > 0 && (
-                        <div className="bio-highlights">
-                            {bioData.highlights.map((highlight, index) => (
-                                <motion.div 
-                                    key={index} 
-                                    className="highlight-item"
-                                    variants={itemVariants}
-                                    whileHover={{ x: 10 }}
-                                >
-                                    <h4>{highlight.label}:</h4>
-                                    <span>{highlight.value}</span>
-                                </motion.div>
-                            ))}
-                        </div>
-                    )}
-                </motion.div>
+            </h2>
+
+            <div style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1.5rem',
+                fontSize: '1.2rem',
+                lineHeight: 1.8,
+                color: 'rgba(255,255,255,0.7)',
+                fontWeight: 300
+            }}>
+                {bioData.paragraphs?.map((p, i) => <p key={i} style={{ margin: 0 }}>{p}</p>)}
             </div>
-        </motion.section>
+
+            <div style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gap: '2rem',
+                borderTop: '1px solid rgba(255,255,255,0.1)',
+                paddingTop: '3rem',
+                marginTop: '1rem'
+            }}>
+                {bioData.highlights?.map((h, i) => (
+                    <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                        <span style={{ fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgba(255,255,255,0.4)', fontWeight: 600 }}>
+                            {h.label}
+                        </span>
+                        <span style={{ fontSize: '1.4rem', fontWeight: 500, color: '#ffffff' }}>
+                            {h.value}
+                        </span>
+                    </div>
+                ))}
+            </div>
+        </section>
     );
 }

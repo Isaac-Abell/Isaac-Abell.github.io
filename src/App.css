@@ -1,134 +1,187 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Space Grotesk', sans-serif;
-    background: #050505;
-    color: #fff;
-    overflow-x: hidden;
-    position: relative;
-}
-
-/* Animated Gradient Background */
-body::before {
-    content: '';
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: 
-        radial-gradient(circle at 20% 50%, rgba(0, 150, 255, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(255, 0, 150, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 40% 20%, rgba(0, 255, 200, 0.15) 0%, transparent 50%);
-    animation: gradient-shift 20s ease infinite;
-    z-index: 0;
-}
-
-@keyframes gradient-shift {
-    0%, 100% {
-        transform: translate(0, 0) rotate(0deg);
-    }
-    33% {
-        transform: translate(5%, -5%) rotate(60deg);
-    }
-    66% {
-        transform: translate(-5%, 5%) rotate(-60deg);
-    }
-}
-
-/* Floating Particles */
-.particles {
-    position: fixed;
+/* UI Overlay (Navbar) */
+.ui-overlay {
+    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    z-index: 1;
     pointer-events: none;
-}
-
-.particle {
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: rgba(0, 200, 255, 0.6);
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
-}
-
-.header-container {
+    /* Let clicks pass through to 3D canvas where there's no UI */
+    z-index: 10;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 3rem;
-    padding: 8rem 2rem 4rem;
-    position: relative;
-    z-index: 10;
-    background: none;
 }
 
-.header-container::before {
-    content: '';
+.navbar {
+    height: var(--nav-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 4rem;
+    background: linear-gradient(180deg, rgba(3, 3, 3, 0.9) 0%, transparent 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    /* Subtle architectural line */
+    pointer-events: auto;
+    /* Enable clicks on the navbar */
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    cursor: pointer;
+    letter-spacing: -0.02em;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    /* Slightly sharper architecture */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 0.02em;
+}
+
+.nav-link:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    /* Subtle glass highlight */
+}
+
+.nav-link.active {
+    color: #000000;
+    background: var(--text-primary);
+    /* High contrast active state */
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.canvas-container {
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 1px;
-    height: 100px;
-    background: linear-gradient(to bottom, transparent, rgba(0, 200, 255, 0.5), transparent);
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
 }
 
-.bio-headshot {
-    width: 220px;
-    height: 220px;
-    border-radius: 50%;
-    object-fit: cover;
-    position: relative;
-    border: 3px solid transparent;
-    background: 
-        linear-gradient(#050505, #050505) padding-box,
-        linear-gradient(135deg, #00c8ff, #ff0096, #00ffc8) border-box;
-    animation: float 6s ease-in-out infinite;
-    box-shadow: 
-        0 0 60px rgba(0, 200, 255, 0.3),
-        0 0 100px rgba(255, 0, 150, 0.2),
-        inset 0 0 20px rgba(0, 200, 255, 0.1);
-    filter: brightness(1.1) contrast(1.05);
+/* Base styles for 3D HTML elements */
+.html-block {
+    color: var(--text-primary);
+    user-select: none;
 }
 
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-20px);
-    }
-}
+/* --- Responsive Utility Classes --- */
 
-.items {
+.section-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 6rem;
-    padding: 4rem 2rem 8rem;
-    position: relative;
-    z-index: 10;
-    max-width: 1400px;
-    margin: 0 auto;
-    background: none;
+    gap: 4rem;
+    color: white;
+    font-family: 'Inter', sans-serif;
 }
 
-@media (min-width: 768px) {
-    .header-container {
-        flex-direction: row;
+.experience-item {
+    display: grid;
+    grid-template-columns: minmax(250px, 1fr) 2fr;
+    gap: 4rem;
+    align-items: start;
+    padding: 2rem;
+    border-radius: 8px;
+    transition: background 0.3s ease, border 0.3s ease;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 4rem;
+}
+
+.html-block-home {
+    width: 1200px;
+}
+
+.html-block-bio {
+    width: 800px;
+}
+
+.html-block-exp {
+    width: 1000px;
+    transform: scale(0.85);
+    transform-origin: center center;
+}
+
+.html-block-proj {
+    width: 1000px;
+    transform: scale(0.85);
+    transform-origin: top center;
+}
+
+/* Mobile Overrides */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        padding: 1rem;
+        gap: 1rem;
+        height: auto;
+    }
+
+    .nav-links {
+        gap: 0.5rem;
+        flex-wrap: wrap;
         justify-content: center;
-        padding: 10rem 2rem 6rem;
+    }
+
+    .nav-link {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    /* Override widths for mobile screens (affects both 2D and 3D) */
+    .html-block-home,
+    .html-block-bio,
+    .html-block-exp,
+    .html-block-proj {
+        width: 350px !important;
+        transform: scale(1) !important;
+    }
+
+    .section-container {
+        gap: 2rem !important;
+    }
+
+    h2.section-title {
+        font-size: 2.5rem !important;
+    }
+
+    .experience-item {
+        grid-template-columns: 1fr !important;
+        gap: 1.5rem !important;
+        padding: 1rem !important;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr !important;
+        gap: 2rem !important;
+    }
+
+    /* Re-size title text */
+    .hero-name {
+        font-size: 4rem !important;
+    }
+
+    .hero-title {
+        font-size: 1.2rem !important;
     }
 }

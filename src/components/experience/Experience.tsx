@@ -1,145 +1,96 @@
-import { motion } from 'framer-motion';
-import type { Experience } from '../../types/Experience';
-import './Experience.css';
+import { useState } from 'react';
+import type { Experience as ExpType } from '../../types/Experience';
 
-export function Experience({ experiences }: { experiences: Experience[] }) {
-    const containerVariants = {
-        hidden: { opacity: 0 },
-        visible: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.3
-            }
-        }
-    };
-
-    const cardVariants = {
-        hidden: { opacity: 0, y: 50, rotateX: -15 },
-        visible: {
-            opacity: 1,
-            y: 0,
-            rotateX: 0,
-            transition: {
-                duration: 0.6,
-                ease: [0.34, 1.56, 0.64, 1]
-            }
-        }
-    };
-
+export function Experience({ experiences, onFocusItem }: { experiences: ExpType[], onFocusItem?: (index: number) => void }) {
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
     return (
-        <motion.section 
-            className="experience-container"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={containerVariants}
-        >
-            <motion.h2 
-                className="sub-title"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-            >
+        <section className="section-container">
+            <h2 className="section-title" style={{
+                fontSize: '4rem',
+                fontWeight: 600,
+                margin: 0,
+                letterSpacing: '-0.03em',
+                color: '#ffffff',
+                borderBottom: '1px solid rgba(255,255,255,0.2)',
+                paddingBottom: '1rem',
+                marginBottom: '2rem'
+            }}>
                 Experience
-            </motion.h2>
-            <div className="experience-list">
+            </h2>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '6rem' }}>
                 {experiences.map((exp, index) => (
-                    <motion.div 
-                        key={index} 
-                        className="experience-card"
-                        variants={cardVariants}
-                        whileHover={{ 
-                            y: -15,
-                            rotateX: 2,
-                            transition: { duration: 0.3 }
-                        }}
-                    >
-                        <div className="experience-header">
-                            <div className="title-section">
-                                <motion.h3 
-                                    className="experience-role"
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.2, duration: 0.5 }}
-                                >
-                                    {exp.role}
-                                </motion.h3>
-                                <motion.a
-                                    href={exp.companyUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="experience-company-link"
-                                    initial={{ opacity: 0, x: -20 }}
-                                    whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.3, duration: 0.5 }}
-                                >
-                                    <h4 className="experience-company">{exp.company}</h4>
-                                </motion.a>
-                            </div>
-                            <motion.div 
-                                className="meta-section"
-                                initial={{ opacity: 0, x: 20 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2, duration: 0.5 }}
-                            >
-                                <p className="experience-date">{exp.date}</p>
-                                <p className="experience-location">{exp.location}</p>
-                            </motion.div>
+                    <div key={index}
+                        className="experience-item"
+                        onClick={() => onFocusItem && onFocusItem(index)}
+                        onMouseEnter={() => setHoveredIndex(index)}
+                        onMouseLeave={() => setHoveredIndex(null)}
+                        style={{
+                            cursor: onFocusItem ? 'pointer' : 'default',
+                            background: hoveredIndex === index ? 'rgba(255,255,255,0.05)' : 'transparent',
+                            border: hoveredIndex === index ? '1px solid rgba(255,255,255,0.1)' : '1px solid transparent'
+                        }}>
+                        {/* Meta Column */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', opacity: 0.7 }}>
+                            <span style={{ fontSize: '1.2rem', fontWeight: 500, letterSpacing: '0.05em' }}>{exp.date}</span>
+                            <span style={{ fontSize: '1rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{exp.location}</span>
                         </div>
-                        <div className="experience-details">
-                            <ul>
+
+                        {/* Content Column */}
+                        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                            <div>
+                                <h3 style={{ fontSize: '2.5rem', fontWeight: 700, margin: '0 0 0.5rem 0', letterSpacing: '-0.02em' }}>{exp.role}</h3>
+                                <a href={exp.companyUrl} target="_blank" rel="noopener noreferrer" style={{
+                                    fontSize: '1.5rem', fontWeight: 400, color: 'rgba(255,255,255,0.7)', textDecoration: 'none'
+                                }}>
+                                    @ {exp.company}
+                                </a>
+                            </div>
+
+                            <ul style={{
+                                listStyle: 'none',
+                                padding: 0,
+                                margin: 0,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                gap: '1rem',
+                                fontSize: '1.1rem',
+                                lineHeight: 1.7,
+                                color: 'rgba(255,255,255,0.85)'
+                            }}>
                                 {exp.details.map((detail, i) => (
-                                    <motion.li 
-                                        key={i}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.4 + (i * 0.1), duration: 0.5 }}
-                                    >
+                                    <li key={i} style={{ position: 'relative', paddingLeft: '1.5rem' }}>
+                                        <span style={{ position: 'absolute', left: 0, color: 'rgba(255,255,255,0.4)' }}>—</span>
                                         {detail}
-                                    </motion.li>
+                                    </li>
                                 ))}
                             </ul>
+
                             {exp.skills && exp.skills.length > 0 && (
-                                <motion.div 
-                                    className="experience-skills"
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.6, duration: 0.5 }}
-                                >
+                                <div style={{
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    gap: '0.75rem',
+                                    marginTop: '1rem'
+                                }}>
                                     {exp.skills.map((skill, i) => (
-                                        <motion.span 
-                                            key={i} 
-                                            className="skill-bubble"
-                                            initial={{ opacity: 0, scale: 0 }}
-                                            whileInView={{ opacity: 1, scale: 1 }}
-                                            viewport={{ once: true }}
-                                            transition={{ 
-                                                delay: 0.7 + (i * 0.05),
-                                                duration: 0.3,
-                                                type: "spring",
-                                                stiffness: 200
-                                            }}
-                                            whileHover={{ 
-                                                y: -4,
-                                                scale: 1.05,
-                                                transition: { duration: 0.2 }
-                                            }}
-                                        >
+                                        <span key={i} style={{
+                                            fontSize: '0.85rem',
+                                            textTransform: 'uppercase',
+                                            letterSpacing: '0.1em',
+                                            padding: '0.4rem 0.8rem',
+                                            border: '1px solid rgba(255,255,255,0.2)',
+                                            color: 'rgba(255,255,255,0.6)'
+                                        }}>
                                             {skill}
-                                        </motion.span>
+                                        </span>
                                     ))}
-                                </motion.div>
+                                </div>
                             )}
                         </div>
-                    </motion.div>
+                    </div>
                 ))}
             </div>
-        </motion.section>
+        </section>
     );
 }
