@@ -2,21 +2,16 @@ import type { Bio } from '../types/Bio';
 
 export const bioData: Bio = {
     paragraphs: [
-        "I am a full-stack intern at SAP and Computer Science Major at the University of Toronto. I was born in New York City and currently live in Toronto. I specialize in building scalable web applications and have experience with modern technologies including Python, TypeScript, Javascript, React, AWS and GCP.",
-        // "My journey in tech has taken me from developing computer vision systems for customer engagement tracking, to building platforms with over 20,000+ users. I am particularly interested in the intersection of AI and web development, and I love creating tools that solve real-world problems.",
+        "I’m a software developer originally from Whistler, BC. I enjoy coding and solving problems. Outside of tech, you can usually find me mountain biking, skiing, or playing video games."
     ],
     highlights: [
         {
-            label: "Current Focus",
-            value: "Full-Stack Development, Computer Vision, AI/ML"
-        },
-        {
             label: "Education",
-            value: "University of Toronto: BS. Computer Science, Statistics"
+            value: "BS. Computer Science, Statistics"
         },
         {
             label: "Interests",
-            value: "AI/ML, Solving Real-World Problems, Mountain Biking, Skiing, Travel"
+            value: "Building Things, Predictive Modeling, Mountain Biking, Skiing, Video Games"
         }
     ]
 };
