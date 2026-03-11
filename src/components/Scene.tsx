@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { CameraControls, Html, Float } from '@react-three/drei';
+import { useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
 import { TitleBanner } from './title-banner';
@@ -32,6 +33,8 @@ const CAMERA_STAND: Record<Section, THREE.Vector3> = {
 export function Scene({ activeSection }: SceneProps) {
     const controlsRef = useRef<any>(null);
     const [focusedItem, setFocusedItem] = useState<{ type: 'experience' | 'projects', index: number } | null>(null);
+    const { size } = useThree();
+    const isMobile = size.width <= 768;
 
     // Reset exact focus when swapping major sections
     useEffect(() => {
@@ -43,43 +46,104 @@ export function Scene({ activeSection }: SceneProps) {
             const targetPos = CAMERA_STAND[activeSection].clone();
             const lookAtPos = POSITIONS[activeSection].clone();
 
+            if (isMobile && !focusedItem) {
+                const dir = new THREE.Vector3().subVectors(targetPos, lookAtPos).normalize();
+                const dist = targetPos.distanceTo(lookAtPos);
+                
+                // Adjust overview camera distance for mobile so elements are not clipped
+                let overviewMultiplier = 1.3;
+                if (activeSection === 'bio') overviewMultiplier = 1.35;
+                if (activeSection === 'experience') overviewMultiplier = 1.8;
+                if (activeSection === 'projects') overviewMultiplier = 1.8;
+                
+                targetPos.copy(lookAtPos).add(dir.multiplyScalar(dist * overviewMultiplier));
+
+                // Center elements vertically as they grow very tall on mobile
+                if (activeSection === 'bio') {
+                    // Pushing camera target down will move the visual content UP on the screen
+                    lookAtPos.y -= 2;
+                    targetPos.y -= 2;
+                }
+            }
+
             if (focusedItem) {
                 // Determine how much closer to move
                 const direction = new THREE.Vector3().subVectors(lookAtPos, targetPos).normalize();
                 const distance = targetPos.distanceTo(lookAtPos);
 
-                // Move camera 55% closer to the element to balance readability and navigation
-                targetPos.add(direction.multiplyScalar(distance * 0.55));
+                // Move camera closer to the element to balance readability and navigation
+                let zoomFactor = focusedItem.type === 'projects' ? 0.65 : 0.55;
+                if (isMobile) {
+                    if (focusedItem.type === 'projects') {
+                        // Base zoom is 0.65. Reduce it slightly for each item down the list.
+                        zoomFactor = 0.5;
+                    } else {
+                        // Experience zoom factor
+                        zoomFactor = 0.35;
+                    }
+                }
+                targetPos.add(direction.multiplyScalar(distance * zoomFactor));
 
                 let panAmountY = 0;
                 let panAmountX = 0;
                 let centerIndex = 0;
 
                 if (focusedItem.type === 'experience') {
-                    // 4 items, center is 1.5
+                    // Mobile becomes much taller, needing a bigger pan
+                    panAmountY = isMobile ? 70 : 32;
                     centerIndex = (experiences.length - 1) / 2;
-                    panAmountY = 32; // Vertical adjustment per item
 
                     const rowOffset = focusedItem.index - centerIndex;
                     lookAtPos.y -= rowOffset * panAmountY;
                     targetPos.y -= rowOffset * panAmountY;
 
+                    if (isMobile) {
+                        // Looking lower pushes the actual content UP on the screen
+                        // Since bottom items appear too high on screen, we need to push the content DOWN.
+                        // To push content DOWN on screen, we push the camera UP (positive y offset)
+                        
+                        // Base is -25. Let's make it more positive as index increases.
+                        const dynamicAdjustment = (focusedItem.index) * 15; // Bottom items get pushed more
+                        lookAtPos.y -= (25 - dynamicAdjustment); 
+                        targetPos.y -= (25 - dynamicAdjustment);
+                    }
+
                 } else if (focusedItem.type === 'projects') {
-                    // Projects are in a 2-column grid. index 0,1 are row 0. 2,3 are row 1.
-                    const row = Math.floor(focusedItem.index / 2);
-                    const totalRows = Math.ceil(projects.length / 2);
-                    centerIndex = (totalRows - 1) / 2;
-                    panAmountY = 25;
+                    if (isMobile) {
+                        // Projects are a single column on mobile
+                        panAmountY = 70;
+                        centerIndex = (projects.length - 1) / 2;
+                        
+                        const rowOffset = focusedItem.index - centerIndex;
+                        lookAtPos.y -= rowOffset * panAmountY;
+                        targetPos.y -= rowOffset * panAmountY;
 
-                    const rowOffset = row - centerIndex;
-                    lookAtPos.y -= rowOffset * panAmountY;
-                    targetPos.y -= rowOffset * panAmountY;
+                        // Pushing the camera lower pushes the content UP on the screen
+                        // Since bottom items appear too high on screen, we need to push the content DOWN.
+                        // To push content DOWN on screen, we push the camera UP (positive y offset)
+                        // However we know the top items are fine, so we want to scale this offset based on index.
+                        
+                        // Base is -45 (from before my changes). Let's make it more positive as index increases.
+                        const dynamicAdjustment = (focusedItem.index) * 15; // Bottom items get pushed more
+                        lookAtPos.y -= (45 - dynamicAdjustment); 
+                        targetPos.y -= (45 - dynamicAdjustment);
+                    } else {
+                        // Projects are in a 2-column grid. index 0,1 are row 0. 2,3 are row 1.
+                        const row = Math.floor(focusedItem.index / 2);
+                        const totalRows = Math.ceil(projects.length / 2);
+                        centerIndex = (totalRows - 1) / 2;
+                        panAmountY = 25;
 
-                    // Pan X to center on the specific column
-                    const col = focusedItem.index % 2;
-                    panAmountX = col === 0 ? -18 : 18;
-                    lookAtPos.x += panAmountX;
-                    targetPos.x += panAmountX;
+                        const rowOffset = row - centerIndex;
+                        lookAtPos.y -= rowOffset * panAmountY;
+                        targetPos.y -= rowOffset * panAmountY;
+
+                        // Pan X to center on the specific column
+                        const col = focusedItem.index % 2;
+                        panAmountX = col === 0 ? -18 : 18;
+                        lookAtPos.x += panAmountX;
+                        targetPos.x += panAmountX;
+                    }
                 }
             }
 

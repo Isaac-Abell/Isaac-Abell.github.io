@@ -17,7 +17,7 @@ export function EasyView() {
             backgroundColor: '#030303',
             color: 'white',
             zIndex: 5,
-            paddingTop: '100px', // space for navbar
+            paddingTop: '160px', // space for navbar
             paddingBottom: '100px',
             display: 'flex',
             flexDirection: 'column',

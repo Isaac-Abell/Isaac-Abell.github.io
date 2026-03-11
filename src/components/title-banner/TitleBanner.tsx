@@ -25,6 +25,7 @@ export function TitleBanner({ socials }: { socials: Socials }) {
             <div style={{
                 display: 'flex',
                 gap: '2rem',
+                flexWrap: 'wrap',
                 marginTop: '1rem',
                 borderTop: '1px solid rgba(255,255,255,0.2)',
                 paddingTop: '1.5rem',

@@ -5,7 +5,7 @@ export const experiences: Experience[] = [
             company: "SAP",
             location: "Walldorf, Germany / Toronto, ON",
             role: "iXp Intern - Full Stack Developer",
-            date: "May 2024 – Present",
+            date: "May 2024 – February 2026",
             companyUrl: "https://www.sap.com/",
             details: [
                 `Developed a computer vision model leveraging transfer learning on a Vision Transformer (ViT) to classify real-time user engagement, with planned global deployment across 18 SAP Experience Centers in 2026.`,
