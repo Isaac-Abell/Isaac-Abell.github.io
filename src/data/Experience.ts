@@ -2,6 +2,18 @@ import type { Experience } from '../types/Experience';
 
 export const experiences: Experience[] = [
         {
+            company: "Google",
+            location: "Sunnyvale, CA",
+            role: "Software Engineer",
+            date: "June 2026 – Present",
+            companyUrl: "https://about.google/company-info/",
+            details: [
+               `Developed a tool that enabled IO's to export telemetry data from air gapped environments to Google, improving SLI visibility for the Organization`,
+               `Developed an agentic tool to automatically patch vulnerabilities in imported external dependencies, reducing developer toil from days to minutes`,
+            ],
+            skills: ["Go", "Docker", "Kubernetes", "GCP", "Terraform" ]
+        },
+        {
             company: "SAP",
             location: "Walldorf, Germany / Toronto, ON",
             role: "iXp Intern - Full Stack Developer",
